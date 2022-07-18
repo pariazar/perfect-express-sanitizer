@@ -62,13 +62,40 @@ app.use(sanitizer.clean({
     noSqlLevel: 5
 }));
 ```
-### Usage as method
+you can add options to specify allowed keys to be skipped at sanitization
+
+```javascript
+
+app.use(sanitizer.clean({
+    xss: true,
+    noSql: true,
+    sql: true,
+    sqlLevel: 5,
+    noSqlLevel: 5,
+    allowedKeys: ['name']
+}));
+```
+you can add options to specify allowed tags to sanitize it and remove other tags
+
+```javascript
+
+app.use(sanitizer.clean({
+    xss: true,
+    noSql: true,
+    sql: true,
+    sqlLevel: 5,
+    noSqlLevel: 5,
+    allowedKeys: ['h1']
+}));
+```
+#### Usage as method
 ```javascript
 
 const sanitize = require("perfect-express-sanitizer");
 
 console.log(sanitize("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
 ```
+
 ## License
 
 This project is licensed under the terms of the
