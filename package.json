@@ -1,0 +1,51 @@
+{
+  "name": "perfect-express-sanitizer",
+  "version": "1.0.0",
+  "description": "a complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha  ./test/test_xss.js"
+  },
+  "author": "hamedPa",
+  "engines": {
+    "node": ">4.0"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/hamedpa/perfect-express-sanitizer",
+  "contributors": [
+    {
+      "name": "HamedPa",
+      "email": "hamedpa21@gmail.com",
+      "url": "https://github.com/hamedpa"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hamedpa/perfect-express-sanitizer"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "sanitize-html": "^2.7.0",
+    "supertest": "^6.2.4"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0"
+  },
+  "keywords": [
+    "sanitizer",
+    "express",
+    "sql",
+    "nosql",
+    "injection",
+    "sqlinjection",
+    "nosqlinjection",
+    "security",
+    "expressjs",
+    "xss",
+    "filter",
+    "text",
+    "input"
+  ]
+}
