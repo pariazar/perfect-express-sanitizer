@@ -25,7 +25,7 @@ control input base on your requirements.
 
 const sanitizer = require("perfect-express-sanitizer");
 
-app.use(sanitize.clean({
+app.use(sanitizer.clean({
     xss: true,
     noSql: true,
     sql: true,
@@ -39,7 +39,7 @@ use white list for some routes that you want to skip ignore
 
 const whiteList = ['/users', '/users/list', '/users/search?age'];
 
-app.use(sanitize.clean({
+app.use(sanitizer.clean({
     xss: true,
     noSql: true,
     sql: true,
@@ -54,7 +54,7 @@ higher level suggested and it will check more keywords.
 
 const sanitizer = require("perfect-express-sanitizer");
 
-app.use(sanitize.clean({
+app.use(sanitizer.clean({
     xss: true,
     noSql: true,
     sql: true,
