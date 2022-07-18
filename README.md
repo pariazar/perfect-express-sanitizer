@@ -91,9 +91,9 @@ app.use(sanitizer.clean({
 #### Usage as method
 ```javascript
 
-const sanitize = require("perfect-express-sanitizer");
+const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-console.log(sanitize("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
+console.log(perfectExpressSanitizer.sanitizer("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
 ```
 
 ## License
