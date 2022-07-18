@@ -1,7 +1,7 @@
 # perfect express sanitizer
 [![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
 
-![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/main/img/logo.png?raw=true)
+![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
 
 A complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack.
