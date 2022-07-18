@@ -93,7 +93,7 @@ app.use(sanitizer.clean({
 
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-console.log(perfectExpressSanitizer.sanitizer("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
+console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
 ```
 
 ## License
