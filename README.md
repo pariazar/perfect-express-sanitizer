@@ -28,8 +28,7 @@ const sanitizer = require("perfect-express-sanitizer");
 app.use(sanitizer.clean({
     xss: true,
     noSql: true,
-    sql: true,
-    level: 5
+    sql: true
 }));
 ```
 
@@ -42,14 +41,21 @@ const whiteList = ['/users', '/users/list', '/users/search?age'];
 app.use(sanitizer.clean({
     xss: true,
     noSql: true,
-    sql: true,
-    noSqlLevel: 5,
-    sqlLevel: 1
+    sql: true
 }, whiteList));
 ```
-you can use more option 
+
+#### Levels
 setting level from 1 to 5 for sql or nosql sanitizer.
-higher level suggested and it will check more keywords. 
+<!-- ![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/levels.png?raw=true) -->
+<img src="./img/levels.png">
+
+higher level contain lower level policies and check more keywords 
+why define different level?
+sometimes you need to check only general keywords and all of your routes or some of them sending query or you don't need to set entire policies for them at this point you can set proper level for your application, higher level suggested.
+
+
+
 ```javascript
 
 const sanitizer = require("perfect-express-sanitizer");

@@ -25,7 +25,7 @@ module.exports = [
     },
     {
         "keyword": "true, $where:",
-        "level": 5
+        "level": 1
     },
     {
         "keyword": "$eq",
@@ -49,7 +49,7 @@ module.exports = [
     },
     {
         "keyword": ".insert",
-        "level": 5
+        "level": 3
     },
     {
         "keyword": ".mapReduce",
@@ -89,95 +89,95 @@ module.exports = [
     },
     {
         "keyword": "||",
-        "level": 5
+        "level": 1
     },
     {
         "keyword": "||",
-        "level": 5
+        "level": 1
     },
     {
         "keyword": "%00",
-        "level": 4
+        "level": 1
     },
     {
         "keyword": "add",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "drop(",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "insertOne",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "bulkWrite",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "insertMany",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "isCapped",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "latencyStats",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "mapReduce",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "reIndex",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "remove(",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "renameCollection(",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "replaceOne(",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "stats(",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "storageSize(",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "totalIndexSize",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "totalSize(",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "unhideIndex",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "update(",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "updateOne(",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "updateMany(",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "watch(",
@@ -193,39 +193,39 @@ module.exports = [
     },
     {
         "keyword": "createIndex",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "createIndexes",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "dataSize",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "deleteOne",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "deleteMany",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "drop(",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "dropIndex",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "dropIndexes",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "ensureIndex",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "estimatedDocumentCount",
@@ -237,19 +237,19 @@ module.exports = [
     },
     {
         "keyword": "findAndModify",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "findOneAndDelete",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "findOneAndReplace",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "findOneAndUpdate",
-        "level": 4
+        "level": 3
     },
     {
         "keyword": "getIndexes",
@@ -257,27 +257,27 @@ module.exports = [
     },
     {
         "keyword": "getShardDistribution",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "getShardVersion",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "hideIndex",
-        "level": 4
+        "level": 2
     },
     {
         "keyword": "allowDiskUse",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "forEach",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "isExhausted",
-        "level": 4
+        "level": 5
     },
     {
         "keyword": "$group",
@@ -289,7 +289,7 @@ module.exports = [
     },
     {
         "keyword": "aggregate",
-        "level": 3
+        "level": 5
     },
     {
         "keyword": "group(",
@@ -301,31 +301,31 @@ module.exports = [
     },
     {
         "keyword": "$merge",
-        "level": 3
+        "level": 5
     },
     {
         "keyword": "merge(",
-        "level": 3
+        "level": 5
     },
     {
         "keyword": "lookup",
-        "level": 3
+        "level": 4
     },
     {
         "keyword": "$lookup",
-        "level": 3
+        "level": 4
     },
     {
         "keyword": "lookup(",
-        "level": 3
+        "level": 4
     },
     {
         "keyword": "$project",
-        "level": 3
+        "level": 4
     },
     {
         "keyword": "$expr",
-        "level": 3
+        "level": 4
     },
     {
         "keyword": "$unset",
@@ -337,6 +337,6 @@ module.exports = [
     },
     {
         "keyword": "findOne",
-        "level": 5
+        "level": 4
     }
 ]

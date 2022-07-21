@@ -17,122 +17,122 @@ module.exports = [
     {
         regex: '((%27)|(\'))union',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))select',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))insert',
         flag: 'ig',
-        level: 1
+        level: 3
     },
     {
         regex: '((%27)|(\'))update',
         flag: 'ig',
-        level: 1
+        level: 3
     },
     {
         regex: '((%27)|(\'))delete',
         flag: 'ig',
-        level: 1
+        level: 3
     },
     {
         regex: '((%27)|(\'))drop',
         flag: 'ig',
-        level: 1
+        level: 2
     },
     {
         regex: '((%27)|(\'))truncate',
         flag: 'ig',
-        level: 1
+        level: 2
     },
     {
         regex: '((%27)|(\'))table',
         flag: 'ig',
-        level: 1
+        level: 2
     },
     {
         regex: '((%27)|(\'))from',
         flag: 'ig',
-        level: 1
+        level: 5
     },
     {
         regex: '((%27)|(\'))where',
         flag: 'ig',
-        level: 1
+        level: 5
     },
     {
         regex: '((%27)|(\'))group',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))by',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))order',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))limit',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))having',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))like',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))into',
         flag: 'ig',
-        level: 1
+        level: 3
     },
     {
         regex: '((%27)|(\'))load',
         flag: 'ig',
-        level: 1
+        level: 5
     },
     {
         regex: '((%27)|(\'))outfile',
         flag: 'ig',
-        level: 1
+        level: 5
     },
     {
         regex: '((%27)|(\'))or',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))and',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))xor',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))not',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: '((%27)|(\'))exists',
         flag: 'ig',
-        level: 1
+        level: 4
     },
     {
         regex: "'",
@@ -141,21 +141,6 @@ module.exports = [
     },
     {
         regex: "''",
-        flag: 'ig',
-        level: 1
-    },
-    // {
-    //     regex: '`',
-    //     flag: 'ig',
-    //     level: 1
-    // },
-    // {
-    //     regex: '``',
-    //     flag: 'ig',
-    //     level: 1
-    // },
-    {
-        regex: ',',
         flag: 'ig',
         level: 5
     },
@@ -172,33 +157,18 @@ module.exports = [
     {
         regex: '/',
         flag: 'ig',
-        level: 2
+        level: 5
     },
     {
         regex: '//',
         flag: 'ig',
-        level: 2
+        level: 5
     },
-    // {
-    //     regex: '\\',
-    //     flag: 'ig',
-    //     level: 2
-    // },
-    // {
-    //     regex: '\\/',
-    //     flag: 'ig',
-    //     level: 2
-    // },
     {
         regex: ';',
         flag: 'ig',
         level: 1
     },
-    // {
-    //     regex: `' or "`,
-    //     flag: 'ig',
-    //     level: 1
-    // },
     {
         regex: '-- or # ',
         flag: 'ig',
@@ -279,11 +249,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: '+',
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: '||',
         flag: 'ig',
@@ -347,12 +312,12 @@ module.exports = [
     {
         regex: 'ORDER BY',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'GROUP BY',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: '1=1',
@@ -362,27 +327,27 @@ module.exports = [
     {
         regex: 'UNION',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'SELECT',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'sum',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'tablename',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'columnname',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: '-1 UNION SELECT 1 INTO @,@',
@@ -394,11 +359,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: 'Users) = 1',
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: 'VERSION()',
         flag: 'ig',
@@ -449,11 +409,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: '`',
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: '=',
         flag: 'ig',
@@ -462,12 +417,12 @@ module.exports = [
     {
         regex: 'HAVING',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: 'LIKE',
         flag: 'ig',
-        level: 5
+        level: 4
     },
     {
         regex: '1=0#',
@@ -519,11 +474,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: 'IF',
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: 'xcjl',
         flag: 'ig',
@@ -544,11 +494,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: '))',
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: 'delay',
         flag: 'ig',
@@ -589,11 +534,6 @@ module.exports = [
         flag: 'ig',
         level: 5
     },
-    // {
-    //     regex: `'\/"`,
-    //     flag: 'ig',
-    //     level: 5
-    // },
     {
         regex: '&&SLEEP',
         flag: 'ig',
@@ -707,7 +647,7 @@ module.exports = [
     {
         regex: 'insert',
         flag: 'ig',
-        level: 5
+        level: 3
     },
 
 ]
