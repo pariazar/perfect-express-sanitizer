@@ -1,7 +1,7 @@
 # perfect express sanitizer
 [![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
 
-![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
+![perfect_express_sanitizer](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
 
 A complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack.
@@ -33,6 +33,8 @@ app.use(sanitizer.clean({
 ```
 
 #### advance usage
+##### WhiteList
+
 use white list for some routes that you want to skip ignore
 ```javascript
 
@@ -45,7 +47,18 @@ app.use(sanitizer.clean({
 }, whiteList));
 ```
 
-#### Levels
+##### Limit sanitizing inputs
+by default, this package sanitize all inputs from body, query and header you can custom parts that you want to filter and sanitize user inputs. </br> for example you want to sanitize only body and query you can use below config.
+
+```javascript
+
+app.use(sanitizer.clean({
+            xss: true,
+            noSql: true,
+        }, whiteList = [], only = ["body", "query"]));
+```
+
+##### Levels
 setting level from 1 to 5 for sql or nosql sanitizer.
 <!-- ![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/levels.png?raw=true) -->
 <img src="./img/levels.png">
@@ -94,12 +107,16 @@ app.use(sanitizer.clean({
     allowedKeys: ['h1']
 }));
 ```
-#### Usage as method
+#### Use as method
+This package is not limited to express and you can easily use it by calling method in every JS app.
 ```javascript
 
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script>", { xss: true, noSql: true, sql: true, level: 5 }));
+console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 }));
+
+//------------ output ---------------
+// " bob miler"
 ```
 
 ## License
