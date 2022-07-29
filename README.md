@@ -125,18 +125,21 @@ you can check user input that it has dangerous keywords or not! with below code.
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
 //xss
-const result = await detectXss('bob try to <"alert(1)');
+const result = await perfectExpressSanitizer.detectXss('bob try to <"alert(1)');
 console.log(result);
+//------------ output ---------------
 //true
 
 //Sql Injection
-const result = await detectSqlInjection(' bob try to create table', 5);
+const result = await perfectExpressSanitizer.detectSqlInjection(' bob try to create table', 5);
   console.log(result);
+//------------ output ---------------
 //true
 
 //NoSql Injection
-const result = await detectNoSqlInjection('bob try to findOne', 5);
+const result = await perfectExpressSanitizer.detectNoSqlInjection('bob try to findOne', 5);
 console.log(result);
+//------------ output ---------------
 //true
 ```
 
