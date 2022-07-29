@@ -1,10 +1,10 @@
 {
   "name": "perfect-express-sanitizer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "a complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  ./test/*.js"
+    "test": "npx mocha  ./test/*.js"
   },
   "author": "hamedPa",
   "engines": {
