@@ -14,6 +14,18 @@ const initializeOptions = (options) => {
   };
 };
 
+const detectXss = (value) => {
+  try {
+    const input = value.length;
+    const inputAfterSanitizing = sanitizeHtml(value).length;
+    if (input !== inputAfterSanitizing) {
+      return true;
+    }
+  } catch (error) {
+  }
+  return false;
+}
+
 const sanitize = (options, data) => {
   if (typeof data === "string") {
     return sanitizeHtml(data, options.sanitizerOptions);
@@ -50,4 +62,7 @@ const prepareSanitize = (data, options = {}) => {
   return sanitize(options, data);
 };
 
-module.exports = prepareSanitize;
+module.exports = {
+  prepareSanitize,
+  detectXss
+};

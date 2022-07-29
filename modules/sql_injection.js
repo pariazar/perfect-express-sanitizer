@@ -13,6 +13,25 @@ function hasSqlInjection(value, level) {
   return value;
 }
 
+const detectSqlInjection = (value, level = 5) => {
+  const limits = sqlLimits.filter((item) => {
+    if (item.level <= level) {
+      return item.regex
+    }
+  });
+  const limitsRegex = limits.map((item) => item.regex);
+  let result = false;
+  limitsRegex.forEach(item => {
+    try {
+      if ((new RegExp(item)).test(value) && !item.includes('||') && !item.includes('/*')) {
+        result = true;
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+  return result;
+}
 
 const sanitize = (data, level) => {
   if (typeof data === "string") {
@@ -49,4 +68,7 @@ const sanitize = (data, level) => {
 const prepareSanitize = (data, level = 5) => {
   return sanitize(data, level);
 };
-module.exports = prepareSanitize;
+module.exports = {
+  prepareSanitize,
+  detectSqlInjection
+};

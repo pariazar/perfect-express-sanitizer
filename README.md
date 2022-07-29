@@ -118,6 +118,27 @@ console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script> bob
 //------------ output ---------------
 // " bob miler"
 ```
+#### checking user input and detecting injection
+you can check user input that it has dangerous keywords or not! with below code.
+
+```javascript
+const perfectExpressSanitizer = require("perfect-express-sanitizer");
+
+//xss
+const result = await detectXss('bob try to <"alert(1)');
+console.log(result);
+//true
+
+//Sql Injection
+const result = await detectSqlInjection(' bob try to create table', 5);
+  console.log(result);
+//true
+
+//NoSql Injection
+const result = await detectNoSqlInjection('bob try to findOne', 5);
+console.log(result);
+//true
+```
 
 ## License
 
