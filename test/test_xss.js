@@ -319,6 +319,11 @@ describe("Express xss Sanitize", function () {
                         done,
                     );
             });
+            it("use as method", function () {
+                const perfectExpressSanitizer = require("../index");
+                const result = perfectExpressSanitizer.sanitize.prepareSanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 });
+                expect(result).to.equal(' bob miler');
+            });
         });
     });
 });
