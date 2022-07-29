@@ -12,6 +12,26 @@ function noSQLSanitizer(input, level) {
   });
   return input;
 }
+const detectNoSqlInjection = (value, level = 5) => {
+  const limits = mongoLimit.filter((item) => {
+    if (item.level <= level) {
+      return item.keyword
+    }
+  });
+  const keywords = limits.map((item) => item.keyword);
+
+  let result = false;
+  keywords.forEach(item => {
+    try {
+      if (value.includes(item) && !item.includes('||') && !item.includes('/*')) {
+        result = true;
+      }
+    } catch (error) {
+      // console.log(error);
+    }
+  });
+  return result;
+}
 
 const sanitize = (data, level) => {
   if (typeof data === "string") {
@@ -48,4 +68,7 @@ const sanitize = (data, level) => {
 const prepareSanitize = (data, level = 5) => {
   return sanitize(data, level);
 };
-module.exports = prepareSanitize;
+module.exports = {
+  prepareSanitize,
+  detectNoSqlInjection
+};
