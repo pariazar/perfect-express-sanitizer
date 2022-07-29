@@ -8,20 +8,30 @@
 
 A complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack.
 
-it can control body, query and header of the requests and clear all dirty stuff that might effect on functionally of the application.
+it can control body, query and header of the requests and clear all dirty stuff that might effect on your application.
 
 ## Installation
 Install via NPM:
 
 ```bash
 npm install perfect-express-sanitizer
-
 ```
 
 ## Usage
 
 #### simple usage
 
+This package is not limited to express and you can easily use it by calling method in every JS project.
+```javascript
+
+const perfectExpressSanitizer = require("perfect-express-sanitizer");
+
+console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 }));
+
+//------------ output ---------------
+// " bob miler"
+```
+##### use middleware
 control input base on your requirements.
 ```javascript
 
@@ -109,17 +119,7 @@ app.use(sanitizer.clean({
     allowedKeys: ['h1']
 }));
 ```
-#### Use as method
-This package is not limited to express and you can easily use it by calling method in every JS app.
-```javascript
 
-const perfectExpressSanitizer = require("perfect-express-sanitizer");
-
-console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 }));
-
-//------------ output ---------------
-// " bob miler"
-```
 #### checking user input and detecting injection
 you can check user input that it has dangerous keywords or not! with below code.
 
