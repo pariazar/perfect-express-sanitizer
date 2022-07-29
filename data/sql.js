@@ -350,6 +350,16 @@ module.exports = [
         level: 4
     },
     {
+        regex: 'drop',
+        flag: 'ig',
+        level: 2
+    },
+    {
+        regex: 'create table',
+        flag: 'ig',
+        level: 2
+    },
+    {
         regex: '-1 UNION SELECT 1 INTO @,@',
         flag: 'ig',
         level: 5

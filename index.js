@@ -4,7 +4,7 @@ function middleware(options = {}, whiteList = [], only = ["body", "params", "hea
     return (req, res, next) => {
         only.forEach((k) => {
             if (req[k] && !whiteList.some(v => req.url.trim().includes(v))) {
-                req[k] = sanitize(req[k], options);
+                req[k] = sanitize.prepareSanitize(req[k], options);
             }
         });
         next();
@@ -13,5 +13,5 @@ function middleware(options = {}, whiteList = [], only = ["body", "params", "hea
 
 module.exports = {
     clean: middleware,
-    sanitize,
+    sanitize
 };
