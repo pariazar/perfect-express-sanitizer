@@ -1,6 +1,8 @@
 # perfect express sanitizer
 [![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
 
+![example workflow](https://github.com/hamedpa/perfect-express-sanitizer/actions/workflows/actions.yml/badge.svg)
+
 ![perfect_express_sanitizer](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
 
