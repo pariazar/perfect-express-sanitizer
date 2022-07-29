@@ -1,9 +1,9 @@
-# perfect express sanitizer
+# Perfect Express Sanitizer
 [![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
 
 ![building workflow](https://github.com/hamedpa/perfect-express-sanitizer/actions/workflows/actions.yml/badge.svg)
 
-![perfect_express_sanitizer](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
+![perfect_express_sanitizer banner](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
 
 A complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack.
@@ -26,12 +26,15 @@ This package is not limited to express and you can easily use it by calling meth
 
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-console.log(perfectExpressSanitizer.sanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 }));
+const input = perfectExpressSanitizer.sanitize.prepareSanitize(
+    "<script>alert('test')</script> bob miler",
+     { xss: true, noSql: true, sql: true, level: 5 });
+console.log(input);
 
 //------------ output ---------------
 // " bob miler"
 ```
-##### use middleware
+##### Middleware
 control input base on your requirements.
 ```javascript
 
@@ -144,6 +147,15 @@ console.log(result);
 //------------ output ---------------
 //true
 ```
+## Support
+  - [Bug Reports](https://github.com/hamedpa/perfect-express-sanitizer/issues/)
+
+## Contributors
+<p>
+Pull requests are always welcome! Please base pull requests against the main branch and follow the contributing guide.
+
+if your pull requests makes documentation changes, please update readme file.
+</p>
 
 ## License
 
