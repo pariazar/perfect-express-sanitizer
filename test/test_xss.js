@@ -324,6 +324,13 @@ describe("Express xss Sanitize", function () {
                 const result = perfectExpressSanitizer.sanitize.prepareSanitize("<script>alert('test')</script> bob miler", { xss: true, noSql: true, sql: true, level: 5 });
                 expect(result).to.equal(' bob miler');
             });
+            it("test static digit", function () {
+                const perfectExpressSanitizer = require("../index");
+                const cleanResult = perfectExpressSanitizer.sanitize.prepareSanitize("55-56-89-85", { xss: true, noSql: true, sql: true, level: 5 });
+                const dirtyResult = perfectExpressSanitizer.sanitize.prepareSanitize("55-56-89-85;'Drop'", { xss: true, noSql: true, sql: true, level: 5 });
+                expect(cleanResult).to.equal('55-56-89-85');
+                expect(dirtyResult).to.equal('55-56-89-85');
+            });
         });
     });
 });
