@@ -305,11 +305,6 @@ module.exports = [
         level: 5
     },
     {
-        regex: '1*56',
-        flag: 'ig',
-        level: 5
-    },
-    {
         regex: 'ORDER BY',
         flag: 'ig',
         level: 4
@@ -621,11 +616,6 @@ module.exports = [
     },
     {
         regex: 'INJ',
-        flag: 'ig',
-        level: 5
-    },
-    {
-        regex: 'admin',
         flag: 'ig',
         level: 5
     },
