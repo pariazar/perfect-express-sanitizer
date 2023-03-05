@@ -7,12 +7,12 @@
     "test": "npx mocha  ./test/*.js"
   },
   "author": {
-    "name": "hamedpa",
-    "email": "hamedpa21@gmail.com",
-    "url": "https://github.com/hamedpa"
+    "name": "pariazar",
+    "email": "hamedpa19@gmail.com",
+    "url": "https://github.com/pariazar"
   },
   "bugs": {
-    "url": "https://github.com/hamedpa/perfect-express-sanitizer/issues"
+    "url": "https://github.com/pariazar/perfect-express-sanitizer/issues"
   },
   "engines": {
     "node": ">4.0"
@@ -24,17 +24,17 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   ],
-  "homepage": "https://github.com/hamedpa/perfect-express-sanitizer",
+  "homepage": "https://github.com/pariazar/perfect-express-sanitizer",
   "contributors": [
     {
-      "name": "HamedPa",
-      "email": "hamedpa21@gmail.com",
-      "url": "https://github.com/hamedpa"
+      "name": "pariazar",
+      "email": "hamedpa19@gmail.com",
+      "url": "https://github.com/pariazar"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/hamedpa/perfect-express-sanitizer"
+    "url": "https://github.com/pariazar/perfect-express-sanitizer"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
