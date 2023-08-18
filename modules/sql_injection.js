@@ -1,13 +1,13 @@
-const sqlLimits = require('../data/sql.js');
+const sqlLimits = require("../data/sql.js");
 function hasSqlInjection(value, level) {
   const limits = sqlLimits.filter((item) => {
     if (item.level <= level) {
-      return item.regex
+      return item.regex;
     }
   });
   const limitsRegex = limits.map((item) => item.regex);
-  limitsRegex.forEach(item => {
-    value = value.replace(new RegExp(item, 'ig'), '');
+  limitsRegex.forEach((item) => {
+    value = value.replace(new RegExp(item, "ig"), "");
   });
 
   return value;
@@ -16,14 +16,18 @@ function hasSqlInjection(value, level) {
 const detectSqlInjection = (value, level = 5) => {
   const limits = sqlLimits.filter((item) => {
     if (item.level <= level) {
-      return item.regex
+      return item.regex;
     }
   });
   const limitsRegex = limits.map((item) => item.regex);
   let result = false;
-  limitsRegex.forEach(item => {
+  limitsRegex.forEach((item) => {
     try {
-      if ((new RegExp(item)).test(value) && !item.includes('||') && !item.includes('/*')) {
+      if (
+        new RegExp(item).test(value) &&
+        !item.includes("||") &&
+        !item.includes("/*")
+      ) {
         result = true;
       }
     } catch (error) {
@@ -31,7 +35,7 @@ const detectSqlInjection = (value, level = 5) => {
     }
   });
   return result;
-}
+};
 
 const sanitize = (data, level) => {
   if (typeof data === "string") {
@@ -70,5 +74,5 @@ const prepareSanitize = (data, level = 5) => {
 };
 module.exports = {
   prepareSanitize,
-  detectSqlInjection
+  detectSqlInjection,
 };

@@ -1,17 +1,16 @@
 # Perfect Express Sanitizer
+
 [![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
 
 ![building workflow](https://github.com/hamedpa/perfect-express-sanitizer/actions/workflows/actions.yml/badge.svg)
 
 ![perfect_express_sanitizer banner](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
-
-A complete package to control user input data to prevent Cross Site Scripting (XSS) ,Sql injection and no Sql injection attack.
-
-it can control body, query and header of the requests and clear all dirty stuff that might effect on your application.
+`perfect-express-sanitizer` is a comprehensive package that helps you control user input data to prevent Cross-Site Scripting (XSS), SQL injection, and NoSQL injection attacks. It can sanitize the body, query, and header of requests to remove any potentially harmful data.
 
 ## Installation
-Install via NPM:
+
+You can install `perfect-express-sanitizer` via NPM:
 
 ```bash
 npm install perfect-express-sanitizer
@@ -21,73 +20,114 @@ npm install perfect-express-sanitizer
 
 #### simple usage
 
-This package is not limited to express and you can easily use it by calling method in every JS project.
-```javascript
+You can use perfect-express-sanitizer in any JavaScript project, not just with Express. Here’s an example of how to use the prepareSanitize method to sanitize a string:
 
+```javascript
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-const input = perfectExpressSanitizer.sanitize.prepareSanitize(
-    "<script>alert('test')</script> bob miler",
-     { xss: true, noSql: true, sql: true, level: 5 });
-console.log(input);
+const input = "<script>alert('test')</script> bob miler";
+const options = { xss: true, noSql: true, sql: true, level: 5 };
+const sanitizedInput = perfectExpressSanitizer.sanitize.prepareSanitize(
+  input,
+  options
+);
 
-//------------ output ---------------
-// " bob miler"
+console.log(sanitizedInput);
+// Output: " bob miler"
 ```
-##### Middleware
-control input base on your requirements.
-```javascript
 
+##### Middleware
+
+You can also use `perfect-express-sanitizer` as a middleware in an Express app to automatically sanitize all incoming requests. Here’s an example of how to set it up:
+
+```javascript
 const sanitizer = require("perfect-express-sanitizer");
 
-app.use(sanitizer.clean({
+app.use(
+  sanitizer.clean({
     xss: true,
     noSql: true,
-    sql: true
-}));
+    sql: true,
+  })
+);
 ```
 
-#### advance usage
-##### WhiteList
+#### Advance Usage
 
-use white list for some routes that you want to skip ignore
+##### Define Custom keyword to sanitize
+
+`perfect-express-sanitizer` allows you to define custom keywords to sanitize from sensitive data. You can specify these keywords as strings or regular expressions in the forbiddenTags option when setting up the middleware. Here’s an example of how to define a custom keyword as a string:
+</br>
+In this example, the `.execute` keyword is added to the list of forbidden tags, so it will be removed from any data that is sanitized by the middleware.
+
 ```javascript
+sanitizer.clean({
+  xss: true,
+  noSql: true,
+  level: 5,
+  forbiddenTags: [".execute"],
+});
+```
 
-const whiteList = ['/users', '/users/list', '/users/search?age'];
-
-app.use(sanitizer.clean({
+You can also use regular expressions to define more complex patterns for forbidden tags. Here’s an example of how to use a regular expression to remove any instances of a digit followed by an equals sign followed by another digit
+</br>
+In this example, the regular expression `/\d=\d/gm` is added to the list of forbidden tags, so any matches will be removed from the data.
+```javascript
+sanitizer.clean({
     xss: true,
     noSql: true,
-    sql: true
-}, whiteList));
+    level: 5,
+    forbiddenTags: [/\d=\d/gm,".execute"],
+})
 ```
 
-##### Limit sanitizing inputs
-by default, this package sanitize all inputs from body, query and header you can custom parts that you want to filter and sanitize user inputs. </br> for example you want to sanitize only body and query you can use below config.
+
+##### Whitelisting Routes
+
+If you want to skip sanitization for certain routes, you can specify a whitelist of routes when setting up the middleware:
 
 ```javascript
+const whiteList = ["/users", "/users/list", "/users/search?age"];
 
-app.use(sanitizer.clean({
-            xss: true,
-            noSql: true,
-        }, whiteList = [], only = ["body", "query"]));
+app.use(
+  sanitizer.clean(
+    {
+      xss: true,
+      noSql: true,
+      sql: true,
+    },
+    whiteList
+  )
+);
 ```
 
-##### Levels
-setting level from 1 to 5 for sql or nosql sanitizer.
+##### Limit Sanitization
+
+By default, `perfect-express-sanitizer` sanitizes all parts of the request (body, query, and header). If you only want to sanitize specific parts of the request, you can specify them when setting up the middleware:
+
+```javascript
+app.use(
+  sanitizer.clean(
+    {
+      xss: true,
+      noSql: true,
+      sql: true,
+    },
+    whiteList = [],
+    only = ["body", "query"]
+  )
+);
+```
+
+##### Setting Sanitization Levels
+
+You can set different levels of sanitization for SQL and NoSQL injections by specifying the sqlLevel and noSqlLevel options when setting up the middleware. The levels range from 1 to 5, with higher levels providing more comprehensive sanitization.
+
 <!-- ![alt text](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/levels.png?raw=true) -->
 <img src="./img/levels.png">
 
-higher level contain lower level policies and check more keywords 
-why define different level?
-sometimes you need to check only general keywords and all of your routes or some of them sending query or you don't need to set entire policies for them at this point you can set proper level for your application, higher level suggested.
-
-
 
 ```javascript
-
-const sanitizer = require("perfect-express-sanitizer");
-
 app.use(sanitizer.clean({
     xss: true,
     noSql: true,
@@ -96,65 +136,53 @@ app.use(sanitizer.clean({
     noSqlLevel: 5
 }));
 ```
-you can add options to specify allowed keys to be skipped at sanitization
+##### Allowing Specific Keys
+You can also specify a list of allowed keys that should be skipped during sanitization. Here’s an example of how to allow the name key:
 
 ```javascript
-
-app.use(sanitizer.clean({
+app.use(
+  sanitizer.clean({
     xss: true,
     noSql: true,
     sql: true,
     sqlLevel: 5,
     noSqlLevel: 5,
-    allowedKeys: ['name']
-}));
-```
-you can add options to specify allowed tags to sanitize it and remove other tags
-
-```javascript
-
-app.use(sanitizer.clean({
-    xss: true,
-    noSql: true,
-    sql: true,
-    sqlLevel: 5,
-    noSqlLevel: 5,
-    allowedKeys: ['h1']
-}));
+    allowedKeys: ["name"],
+  })
+);
 ```
 
-#### checking user input and detecting injection
-you can check user input that it has dangerous keywords or not! with below code.
+#### Detecting Injection Attempts
+
+In addition to sanitizing user input, perfect-express-sanitizer also provides methods for detecting dangerous keywords in user input. These methods can be used to check for XSS, SQL injection, and NoSQL injection attempts. Here are some examples of how to use these methods:
 
 ```javascript
 const perfectExpressSanitizer = require("perfect-express-sanitizer");
 
-//xss
-const result = await perfectExpressSanitizer.detectXss('bob try to <"alert(1)');
-console.log(result);
-//------------ output ---------------
-//true
+// Detecting XSS attempts:
+const hasXss = await perfectExpressSanitizer.detectXss('bob try to <"alert(1)');
+console.log(hasXss); // Output: true
 
-//Sql Injection
-const result = await perfectExpressSanitizer.detectSqlInjection(' bob try to create table', 5);
-  console.log(result);
-//------------ output ---------------
-//true
+// Detecting SQL injection attempts:
+const hasSqlInjection = await perfectExpressSanitizer.detectSqlInjection('bob try to create table', 5);
+console.log(hasSqlInjection); // Output: true
 
-//NoSql Injection
-const result = await perfectExpressSanitizer.detectNoSqlInjection('bob try to findOne', 5);
-console.log(result);
-//------------ output ---------------
-//true
+// Detecting NoSQL injection attempts:
+const hasNoSqlInjection = await perfectExpressSanitizer.detectNoSqlInjection('bob try to findOne', 5);
+console.log(hasNoSqlInjection); // Output: true
 ```
+
 ## Support
-  - [Bug Reports](https://github.com/hamedpa/perfect-express-sanitizer/issues/)
+
+- [Bug Reports](https://github.com/hamedpa/perfect-express-sanitizer/issues/)
 
 ## Contributors
+
 <p>
 Pull requests are always welcome! Please base pull requests against the main branch and follow the contributing guide.
 
 if your pull requests makes documentation changes, please update readme file.
+
 </p>
 
 ## License
