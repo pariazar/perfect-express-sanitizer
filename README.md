@@ -1,8 +1,13 @@
 # Perfect Express Sanitizer
 
-[![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
+<div style="display: flex;">
 
-![building workflow](https://github.com/hamedpa/perfect-express-sanitizer/actions/workflows/actions.yml/badge.svg)
+[![npm](https://img.shields.io/npm/v/perfect-express-sanitizer.svg?style=flat-square)](https://www.npmjs.com/package/perfect-express-sanitizer)
+![building workflow](https://github.com/pariazar/perfect-express-sanitizer/actions/workflows/actions.yml/badge.svg)
+[![Github All Releases](https://img.shields.io/npm/dt/perfect-express-sanitizer.svg)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-0298c3.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 ![perfect_express_sanitizer banner](https://github.com/hamedpa/perfect-express-sanitizer/blob/master/img/logo.png?raw=true)
 
@@ -18,7 +23,7 @@ npm install perfect-express-sanitizer
 
 ## Usage
 
-#### simple usage
+##### simple usage
 
 You can use perfect-express-sanitizer in any JavaScript project, not just with Express. Here’s an example of how to use the prepareSanitize method to sanitize a string:
 
@@ -152,7 +157,7 @@ app.use(
 );
 ```
 
-#### Detecting Injection Attempts
+##### Detecting Injection Attempts
 
 In addition to sanitizing user input, perfect-express-sanitizer also provides methods for detecting dangerous keywords in user input. These methods can be used to check for XSS, SQL injection, and NoSQL injection attempts. Here are some examples of how to use these methods:
 
