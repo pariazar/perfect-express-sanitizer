@@ -7,7 +7,7 @@ function middleware(
 ) {
   return (req, res, next) => {
     only.forEach((k) => {
-      if (req[k] && !whiteList.some((v) => req.url.trim().includes(v))) {
+      if (req[k] && !whiteList.some((v) => req.url.trim().startsWith(v))) {
         req[k] = sanitize.prepareSanitize(req[k], options);
       }
     });
