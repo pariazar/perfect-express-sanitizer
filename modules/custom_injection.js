@@ -3,7 +3,7 @@ function escapeRegExp(string) {
 }
 const removeDangerData = (value, options) =>
   options.forbiddenTags.reduce(
-    (acc, item) => acc.replace(new RegExp(escapeRegExp(item), 'ig'), "").trim(),
+    (acc, item) => acc.replace(new RegExp(options?.hasFile ? escapeRegExp(item) : item, 'ig'), "").trim(),
     value
   );
   

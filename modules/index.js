@@ -14,13 +14,15 @@ const prepareSanitize = (
     noSqlLevel: 5,
     forbiddenTags: [],
     level,
-    allowedKeys: []
+    allowedKeys: [],
+    customizeFile
   }
 ) => {
   if (options.level) {
     options.sqlLevel = options.level;
     options.noSqlLevel = options.level;
   }
+  let forbiddenTags = options.forbiddenTags;
   if(options.customizeFile){
     try {
       const fileData = fs.readFileSync(options.customizeFile, "utf8");
@@ -28,14 +30,18 @@ const prepareSanitize = (
       if(!Array.isArray(jsonData)){
         console.error("Error invalid structure: file need array of keywords");
       }
-      options.forbiddenTags = options.forbiddenTags.concat(jsonData.map((wd)=> wd.keyword));
-      data = custom_sanitize.prepareSanitize(data, options)
+      options.forbiddenTags = jsonData.map((wd)=> wd.keyword);
+      options.hasFile = true;
+      data = custom_sanitize.prepareSanitize(data, options);
+      options.forbiddenTags = forbiddenTags;
     } catch (error) {
       console.error("Error reading or parsing customize file:", error);
     }
   }
-  if (options.forbiddenTags)
+  if (forbiddenTags){
+    options.hasFile = false;
     data = custom_sanitize.prepareSanitize(data, options);
+  }
   if (options.xss) data = xss_sanitize.prepareSanitize(data, options);
   if (options.noSql)
     data = nosql_injection.prepareSanitize(data, options);
