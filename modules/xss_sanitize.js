@@ -14,6 +14,16 @@ const initializeOptions = (options) => {
   };
 };
 
+function containsAllowedKey(item, allowedKeys) {
+  for (const key of allowedKeys) {
+    const regex = new RegExp(key.replace(/\./g, '\\.').replace(/\*/g, '.*').replace(/%/g, '.*'));
+    if (regex.test(item)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const detectXss = (value) => {
   try {
     const input = value.length;
@@ -28,6 +38,9 @@ const detectXss = (value) => {
 
 const sanitize = (options, data) => {
   if (typeof data === "string") {
+    if(options?.allowedKeys?.includes(data)){
+      return data;
+    }
     return sanitizeHtml(data, options.sanitizerOptions);
   }
   if (Array.isArray(data)) {
@@ -45,6 +58,9 @@ const sanitize = (options, data) => {
     Object.keys(data).forEach((key) => {
       if (options.allowedKeys.includes(key)) {
         return;
+      }
+      if(options?.allowedKeys && containsAllowedKey(data[key], options.allowedKeys)){
+        return data[key];
       }
       const item = data[key];
       if (typeof item === "string") {

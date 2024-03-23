@@ -13,6 +13,7 @@ const prepareSanitize = (
     noSqlLevel: 5,
     forbiddenTags: [],
     level,
+    allowedKeys: []
   }
 ) => {
   if (options.level) {
@@ -23,8 +24,8 @@ const prepareSanitize = (
     data = custom_sanitize.prepareSanitize(data, options);
   if (options.xss) data = xss_sanitize.prepareSanitize(data, options);
   if (options.noSql)
-    data = nosql_injection.prepareSanitize(data, options.noSqlLevel);
-  if (options.sql) data = sql_injection.prepareSanitize(data, options.sqlLevel);
+    data = nosql_injection.prepareSanitize(data, options);
+  if (options.sql) data = sql_injection.prepareSanitize(data, options);
 
   return data;
 };

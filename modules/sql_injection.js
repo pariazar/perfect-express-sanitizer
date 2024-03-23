@@ -13,6 +13,16 @@ function hasSqlInjection(value, level) {
   return value;
 }
 
+function containsAllowedKey(item, allowedKeys) {
+  for (const key of allowedKeys) {
+    const regex = new RegExp(key.replace(/\./g, '\\.').replace(/\*/g, '.*').replace(/%/g, '.*'));
+    if (regex.test(item)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 const detectSqlInjection = (value, level = 5) => {
   const limits = sqlLimits.filter((item) => {
     if (item.level <= level) {
@@ -37,11 +47,17 @@ const detectSqlInjection = (value, level = 5) => {
   return result;
 };
 
-const sanitize = (data, level) => {
+const sanitize = (data, options) => {
+  if(!options?.level) options.level = 5;
+  const { level } = options;
+
   if (typeof data === "string") {
+    if(options?.allowedKeys?.includes(data)){
+      return data;
+    }
     return hasSqlInjection(data, level);
   }
-  if (Array.isArray(data)) {
+  if (Array.isArray( )) {
     return data.map((item) => {
       if (typeof item === "string") {
         return hasSqlInjection(item, level);
@@ -55,6 +71,9 @@ const sanitize = (data, level) => {
   if (typeof data === "object" && data !== null) {
     Object.keys(data).forEach((key) => {
       const item = data[key];
+      if(options?.allowedKeys && containsAllowedKey(item, options.allowedKeys)){
+        return data;
+      }
       if (typeof item === "string") {
         data[key] = hasSqlInjection(item, level);
       } else if (Array.isArray(item) || typeof item === "object") {
@@ -69,8 +88,8 @@ const sanitize = (data, level) => {
   return data;
 };
 
-const prepareSanitize = (data, level = 5) => {
-  return sanitize(data, level);
+const prepareSanitize = (data, options) => {
+  return sanitize(data, options);
 };
 module.exports = {
   prepareSanitize,
