@@ -1,3 +1,4 @@
+const fs = require("fs");
 const nosql_injection = require("./nosql_injection");
 const sql_injection = require("./sql_injection");
 const xss_sanitize = require("./xss_sanitize");
@@ -19,6 +20,19 @@ const prepareSanitize = (
   if (options.level) {
     options.sqlLevel = options.level;
     options.noSqlLevel = options.level;
+  }
+  if(options.customizeFile){
+    try {
+      const fileData = fs.readFileSync(options.customizeFile, "utf8");
+      const jsonData = JSON.parse(fileData);
+      if(!Array.isArray(jsonData)){
+        console.error("Error invalid structure: file need array of keywords");
+      }
+      options.forbiddenTags = options.forbiddenTags.concat(jsonData.map((wd)=> wd.keyword));
+      data = custom_sanitize.prepareSanitize(data, options)
+    } catch (error) {
+      console.error("Error reading or parsing customize file:", error);
+    }
   }
   if (options.forbiddenTags)
     data = custom_sanitize.prepareSanitize(data, options);

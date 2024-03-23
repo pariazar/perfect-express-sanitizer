@@ -1,9 +1,12 @@
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
 const removeDangerData = (value, options) =>
   options.forbiddenTags.reduce(
-    (acc, item) => acc.replace(new RegExp(item, "ig"), "").trim(),
+    (acc, item) => acc.replace(new RegExp(escapeRegExp(item), 'ig'), "").trim(),
     value
   );
-
+  
 const sanitize = (data, keywords) => {
   if (typeof data === "string") {
     return removeDangerData(data, keywords);
