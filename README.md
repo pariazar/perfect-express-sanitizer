@@ -23,7 +23,7 @@ npm install perfect-express-sanitizer
 
 ## Usage
 
-##### simple usage
+### Basic usage
 
 You can use perfect-express-sanitizer in any JavaScript project, not just with Express. Here’s an example of how to use the prepareSanitize method to sanitize a string:
 
@@ -41,7 +41,7 @@ console.log(sanitizedInput);
 // Output: " bob miler"
 ```
 
-##### Middleware
+#### Middleware
 
 You can also use `perfect-express-sanitizer` as a middleware in an Express app to automatically sanitize all incoming requests. Here’s an example of how to set it up:
 
@@ -57,9 +57,41 @@ app.use(
 );
 ```
 
-#### Advance Usage
+### Advance Usage
 
-##### Define Custom keyword to sanitize
+#### Define custom keyword to sanitize
+
+ `customizeFile`, which allows you to define custom keywords to sanitize sensitive data. This is perfect for cases where you want to avoid false positives and ensure that your real data is not wrongly lost.
+
+ #### How to Use `customizeFile`
+
+To use this feature, simply follow these steps:
+
+1. Create a JSON file containing your custom keywords like following custom_file.json.
+    ```json
+    [
+        {
+            "keyword": "deleteCustom"
+        },
+        {
+            "keyword": "dropCustom"
+        }
+    ]
+    ```
+2. Add the file path as the value for the `customizeFile` option when setting up the middleware.
+Here's an example: 
+    ```javascript
+    app.use(
+      sanitizer.clean({
+        xss: true,
+        noSql: true,
+        sql: true,
+        customizeFile: './custom_file.json'
+      })
+    );
+    ```
+
+#### Define custom keyword and regular expressions to sanitize
 
 `perfect-express-sanitizer` allows you to define custom keywords to sanitize from sensitive data. You can specify these keywords as strings or regular expressions in the forbiddenTags option when setting up the middleware. Here’s an example of how to define a custom keyword as a string:
 </br>
