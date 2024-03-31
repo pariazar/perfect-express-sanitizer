@@ -19,7 +19,7 @@ function middleware(
               if (vArr[i].includes(':'))
                 check = true;
               else if (vArr[i] == urlArr[i]) check = true;
-              else if (vArr[i] != urlArr[i]) { check = false; break; }
+              else { check = false; break; }
             };
           return check
         }
