@@ -74,7 +74,11 @@ const sanitize = (data, options) => {
       }
       if (typeof item === "string") {
         sanitizedData[options.sanitizeKeys ? noSQLSanitizer(key, level) : key] = noSQLSanitizer(item, level);
-      } else if (Array.isArray(item) || typeof item === "object") {
+      }
+      else if(typeof item === "boolean" || typeof item === "number") {
+        sanitizedData[key] = item
+      }
+       else if (Array.isArray(item) || typeof item === "object") {
         try {
           sanitizedData[options.sanitizeKeys ? noSQLSanitizer(key, level) : key] = sanitize(item, options);
         } catch (error) {
