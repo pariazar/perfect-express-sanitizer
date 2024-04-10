@@ -119,7 +119,7 @@ sanitizer.clean({
 ```
 
 
-##### Whitelisting Routes
+#### Whitelisting Routes
 
 If you want to skip sanitization for certain routes, you can specify a whitelist of routes when setting up the middleware:
 
@@ -138,7 +138,7 @@ app.use(
 );
 ```
 
-##### Limit Sanitization
+#### Limit Sanitization
 
 By default, `perfect-express-sanitizer` sanitizes all parts of the request (body, query, and header). If you only want to sanitize specific parts of the request, you can specify them when setting up the middleware:
 
@@ -156,7 +156,24 @@ app.use(
 );
 ```
 
-##### Setting Sanitization Levels
+ For an option that sanitizes keys, you could consider the following option `sanitizeKeys: true` example:
+ 
+ ```javascript
+app.use(
+  sanitizer.clean(
+    {
+      xss: true,
+      noSql: true,
+      sanitizeKeys: true,
+    },
+    whiteList = [],
+    only = ["body", "query"]
+  )
+);
+```
+
+
+#### Setting Sanitization Levels
 
 You can set different levels of sanitization for SQL and NoSQL injections by specifying the sqlLevel and noSqlLevel options when setting up the middleware. The levels range from 1 to 5, with higher levels providing more comprehensive sanitization.
 

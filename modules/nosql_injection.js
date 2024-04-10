@@ -66,21 +66,23 @@ const sanitize = (data, options) => {
     });
   }
   if (typeof data === "object" && data !== null) {
+    let sanitizedData = {};
     Object.keys(data).forEach((key) => {
-      const item = data[key];
+      let item = data[key];
       if(options?.allowedKeys  && containsAllowedKey(item, options.allowedKeys)){
-        return data;
+        sanitizedData[key] = item;
       }
       if (typeof item === "string") {
-        data[key] = noSQLSanitizer(item, level);
+        sanitizedData[options.sanitizeKeys ? noSQLSanitizer(key, level) : key] = noSQLSanitizer(item, level);
       } else if (Array.isArray(item) || typeof item === "object") {
         try {
-          data[key] = sanitize(item, level);
+          sanitizedData[options.sanitizeKeys ? noSQLSanitizer(key, level) : key] = sanitize(item, options);
         } catch (error) {
-          data[key] = item;
+          sanitizedData[key] = item;
         }
       }
     });
+    return sanitizedData;
   }
   return data;
 };
